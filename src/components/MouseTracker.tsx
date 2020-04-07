@@ -1,0 +1,24 @@
+import React,{useState,useEffect}from 'react';
+
+
+
+const MourseTracker:React.FC = ()=> {
+    const [positions, setPositions] = useState({x:0,y:0})
+    const updateMouse = (e: MouseEvent)=> {
+        console.log('inner')
+        setPositions({x:e.clientX,y:e.clientY})
+    }
+    useEffect(()=> {
+        document.addEventListener('click',updateMouse)
+        return ()=> {
+            document.removeEventListener('click', updateMouse)
+        }
+    })
+    return (
+        <p>X: {positions.x},Y:{positions.y}</p>
+    )
+    
+}
+
+
+export default MourseTracker
